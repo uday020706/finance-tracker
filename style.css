@@ -121,8 +121,9 @@ form button:hover {
 }
 
 #pieChart {
-  width: 30vw;
-  height: 30vh;
+  padding: 15px;
+  width: 17vw;
+  height: 17vh;
 }
 
 .barChart {
@@ -213,6 +214,7 @@ form button:hover {
   }
 
   #pieChart {
+    padding: 15px;
   width: 40vw;
   height: 40vh;
 }
@@ -278,6 +280,7 @@ form button:hover {
   }
 
   #pieChart {
+    padding: 15px;
   width: 40vw;
   height: 40vh;
 }
@@ -306,6 +309,7 @@ form button:hover {
     width: 90vw;
   }
   #pieChart {
+    padding: 15px;
   width: 40vw;
   height: 40vh;
 }
