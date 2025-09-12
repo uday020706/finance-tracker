@@ -27,7 +27,7 @@ form.addEventListener("submit", (e) => {
   localStorage.setItem("transactions", JSON.stringify(transactions));
   form.reset();
 
-  setTr
+  setTransactions();
   updateLS();
 });
 
