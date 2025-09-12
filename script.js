@@ -8,15 +8,16 @@ const desc = document.getElementById('description');
 const totalIncome = document.getElementById('total-income');
 const totalExpenses = document.getElementById('total-expenses');
 const balance = document.getElementById('balance');
-const list = document.getElementById('transaction-list');
 
+const tableBody = document.querySelector("#transaction-table tbody");
+
+// --- Handle form submit ---
 form.addEventListener("submit", (e) => {
   e.preventDefault();
 
   const transaction = {
     id: Date.now(),
     date: new Date(),
-
     type: opt.value,
     amount: +amountInp.value,
     category: catg.value,
@@ -31,14 +32,11 @@ form.addEventListener("submit", (e) => {
   updateLS();
 });
 
-// render list
-const tableBody = document.querySelector("#transaction-table tbody");
-
+// --- Render transactions ---
 function setTransactions() {
   tableBody.innerHTML = '';
   transactions.forEach((t, i) => {
     const tr = document.createElement('tr');
-
 
     const today = new Date(t.date);
     const formattedDate = today.getDate() + "/" + (today.getMonth() + 1) + "/" + today.getFullYear();
@@ -56,21 +54,14 @@ function setTransactions() {
   });
 }
 
-
-// update totals
-function updateLS() {
-  const income = transactions.filter(e => e.type === 'income').reduce((sum, e) => sum + e.amount, 0);
-
-  const expense = transactions
-    .filter(e => e.type === 'expense')
-    .reduce((sum, e) => sum + e.amount, 0);
-
-  totalIncome.textContent = income;
-  totalExpenses.textContent = expense;
-  balance.textContent = income - expense;
-  // pie chart
-  const pieChart = document.getElementById("pieChart").getContext("2d");
-  new Chart(pieChart, {
+// --- Update charts ---
+function updateCharts(income, expense) {
+  // Pie chart
+  if (window.pieChart instanceof Chart) {
+    window.pieChart.destroy();
+  }
+  const pieCtx = document.getElementById("pieChart").getContext("2d");
+  window.pieChart = new Chart(pieCtx, {
     type: "pie",
     data: {
       labels: ["Income", "Expense"],
@@ -81,19 +72,22 @@ function updateLS() {
     }
   });
 
-  // bar graph
-  const barChart = document.getElementById("barChart").getContext("2d");
-  new Chart(barChart, {
+  // Bar chart
+  if (window.barChart instanceof Chart) {
+    window.barChart.destroy();
+  }
+  const barCtx = document.getElementById("barChart").getContext("2d");
+  window.barChart = new Chart(barCtx, {
     type: "bar",
     data: {
       labels: ["Income", "Expense"],
       datasets: [{
         label: "Amount",
         data: [income, expense],
-        backgroundColor: ["green", "red"],   
-        borderColor:  ["green", "red"],      
-        borderWidth: 2,                            
-        borderRadius: 8,                       
+        backgroundColor: ["green", "red"],
+        borderColor: ["green", "red"],
+        borderWidth: 2,
+        borderRadius: 8,
         barThickness: 50
       }]
     },
@@ -106,12 +100,27 @@ function updateLS() {
   });
 }
 
+// --- Update totals & charts ---
+function updateLS() {
+  const income = transactions
+    .filter(e => e.type === 'income')
+    .reduce((sum, e) => sum + e.amount, 0);
 
+  const expense = transactions
+    .filter(e => e.type === 'expense')
+    .reduce((sum, e) => sum + e.amount, 0);
 
-// delete transaction
+  totalIncome.textContent = income;
+  totalExpenses.textContent = expense;
+  balance.textContent = income - expense;
+
+  updateCharts(income, expense);
+}
+
+// --- Delete transaction ---
 tableBody.addEventListener("click", (e) => {
-  if (e.target.classList.contains("delete-btn")) {
-    const i = e.target.dataset.index;
+  if (e.target.closest(".delete-btn")) {
+    const i = e.target.closest(".delete-btn").dataset.index;
     transactions.splice(i, 1);
     localStorage.setItem("transactions", JSON.stringify(transactions));
     setTransactions();
@@ -119,7 +128,6 @@ tableBody.addEventListener("click", (e) => {
   }
 });
 
+// --- Initial load ---
 setTransactions();
 updateLS();
-
-
