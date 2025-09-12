@@ -11,7 +11,7 @@ const balance = document.getElementById('balance');
 
 const tableBody = document.querySelector("#transaction-table tbody");
 
-// --- Handle form submit ---
+
 form.addEventListener("submit", (e) => {
   e.preventDefault();
 
@@ -32,7 +32,7 @@ form.addEventListener("submit", (e) => {
   updateLS();
 });
 
-// --- Render transactions ---
+
 function setTransactions() {
   tableBody.innerHTML = '';
   transactions.forEach((t, i) => {
@@ -54,9 +54,9 @@ function setTransactions() {
   });
 }
 
-// --- Update charts ---
+//  updating chart 
 function updateCharts(income, expense) {
-  // Pie chart
+ 
   if (window.pieChart instanceof Chart) {
     window.pieChart.destroy();
   }
@@ -72,7 +72,7 @@ function updateCharts(income, expense) {
     }
   });
 
-  // Bar chart
+
   if (window.barChart instanceof Chart) {
     window.barChart.destroy();
   }
@@ -100,7 +100,7 @@ function updateCharts(income, expense) {
   });
 }
 
-// --- Update totals & charts ---
+//  updating local storage 
 function updateLS() {
   const income = transactions
     .filter(e => e.type === 'income')
@@ -117,7 +117,7 @@ function updateLS() {
   updateCharts(income, expense);
 }
 
-// --- Delete transaction ---
+
 tableBody.addEventListener("click", (e) => {
   if (e.target.closest(".delete-btn")) {
     const i = e.target.closest(".delete-btn").dataset.index;
@@ -128,6 +128,6 @@ tableBody.addEventListener("click", (e) => {
   }
 });
 
-// --- Initial load ---
+
 setTransactions();
 updateLS();

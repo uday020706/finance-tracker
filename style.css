@@ -15,7 +15,7 @@
   --highlight-color: #2f01fb;
 }
 
-/* 🌙 Dark Mode */
+
 .dark-mode {
   --bg-color: black;
   --text-color: #f5f5f5;
@@ -192,9 +192,9 @@ form button:hover {
   color: var(--highlight-color);
 }
 
-/* 📱 Mobile First (Default) */
 
-/* For tablets (up to 1024px) */
+
+
 @media screen and (max-width: 1024px) {
   .container {
     width: 90%;
@@ -216,9 +216,12 @@ form button:hover {
     width: 80% !important;
     height: auto;
   }
+  #add-btn {
+    background-color: rgb(50, 50, 194);
+  }
 }
 
-/* For large phones (up to 768px) */
+
 @media screen and (max-width: 768px) {
   body {
     font-size: 14px;
@@ -239,6 +242,9 @@ form button:hover {
   form button {
     width: 100%;
     font-size: 14px;
+  }
+  #add-btn {
+    background-color: rgb(50, 50, 194);
   }
 
   .totals {
