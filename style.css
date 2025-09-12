@@ -219,6 +219,9 @@ form button:hover {
   #add-btn {
     background-color: rgb(50, 50, 194);
   }
+ #option, #add-btn {
+    width: 100%;
+  }
 }
 
 
@@ -240,8 +243,12 @@ form button:hover {
   form input,
   form select,
   form button {
-    width: 100%;
+    width: 90vw;
     font-size: 14px;
+    border: 2px solid black;
+  }
+#option, #add-btn {
+    width: 100%;
   }
   #add-btn {
     background-color: rgb(50, 50, 194);
@@ -273,7 +280,6 @@ form button:hover {
   }
 }
 
-/* For small phones (up to 480px) */
 @media screen and (max-width: 480px) {
   body {
     font-size: 12px;
@@ -290,8 +296,18 @@ form button:hover {
   form button {
     font-size: 12px;
     padding: 8px;
+    width: 90vw;
   }
-
+.inputForm {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  /* justify-content: center; */
+  align-items: center; 
+}
+#option, #add-btn {
+    width: 100%;
+  }
   h1, h2 {
     font-size: 18px;
   }

@@ -55,50 +55,69 @@ function setTransactions() {
 }
 
 //  updating chart 
-function updateCharts(income, expense) {
- 
+function updateCharts() {
+  // Pie chart
+  const expenseCategories = {};
+  transactions
+    .filter(t => t.type === 'expense')
+    .forEach(t => {
+      expenseCategories[t.category] = (expenseCategories[t.category] || 0) + t.amount;
+    });
+
+  const pieLabels = Object.keys(expenseCategories);
+  const pieData = Object.values(expenseCategories);
+
   if (window.pieChart instanceof Chart) {
     window.pieChart.destroy();
   }
+
   const pieCtx = document.getElementById("pieChart").getContext("2d");
   window.pieChart = new Chart(pieCtx, {
     type: "pie",
     data: {
-      labels: ["Income", "Expense"],
+      labels: pieLabels,
       datasets: [{
-        data: [income, expense],
-        backgroundColor: ["green", "red"]
+        data: pieData,
+        backgroundColor: pieLabels.map(() => `hsl(${Math.random() * 360},70%,60%)`)
       }]
     }
   });
 
+  // Bar chart
+  const monthlyData = {};
+  transactions.forEach(t => {
+    const d = new Date(t.date);
+    const month = `${d.getFullYear()}-${(d.getMonth() + 1).toString().padStart(2, '0')}`;
+    if (!monthlyData[month]) monthlyData[month] = { income: 0, expense: 0 };
+    monthlyData[month][t.type] += t.amount;
+  });
+
+  const barLabels = Object.keys(monthlyData).sort();
+  const incomeData = barLabels.map(m => monthlyData[m].income);
+  const expenseData = barLabels.map(m => monthlyData[m].expense);
 
   if (window.barChart instanceof Chart) {
     window.barChart.destroy();
   }
+
   const barCtx = document.getElementById("barChart").getContext("2d");
   window.barChart = new Chart(barCtx, {
     type: "bar",
     data: {
-      labels: ["Income", "Expense"],
-      datasets: [{
-        label: "Amount",
-        data: [income, expense],
-        backgroundColor: ["green", "red"],
-        borderColor: ["green", "red"],
-        borderWidth: 2,
-        borderRadius: 8,
-        barThickness: 50
-      }]
+      labels: barLabels,
+      datasets: [
+        { label: "Income", data: incomeData, backgroundColor: "green", borderRadius:"10", barThickness:"30" },
+        { label: "Expense", data: expenseData, backgroundColor: "red", borderRadius:"10", barThickness:"30"  }
+      ]
     },
     options: {
       responsive: true,
-      scales: {
-        y: { beginAtZero: true }
-      }
+      scales: { y: { beginAtZero: true } }
     }
   });
 }
+
+
 
 //  updating local storage 
 function updateLS() {
@@ -114,7 +133,7 @@ function updateLS() {
   totalExpenses.textContent = expense;
   balance.textContent = income - expense;
 
-  updateCharts(income, expense);
+  updateCharts();
 }
 
 
