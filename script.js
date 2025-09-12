@@ -54,6 +54,15 @@ function setTransactions() {
   });
 }
 
+const categoryColors = {};
+
+function getCategoryColor(category) {
+  if (!categoryColors[category]) {
+    categoryColors[category] = `hsl(${Math.random() * 360},70%,60%)`;
+  }
+  return categoryColors[category];
+}
+
 //  updating chart 
 function updateCharts() {
   // Pie chart
@@ -66,6 +75,7 @@ function updateCharts() {
 
   const pieLabels = Object.keys(expenseCategories);
   const pieData = Object.values(expenseCategories);
+  const pieColors = pieLabels.map(c => getCategoryColor(c));
 
   if (window.pieChart instanceof Chart) {
     window.pieChart.destroy();
@@ -78,11 +88,10 @@ function updateCharts() {
       labels: pieLabels,
       datasets: [{
         data: pieData,
-        backgroundColor: pieLabels.map(() => `hsl(${Math.random() * 360},70%,60%)`)
+        backgroundColor: pieColors
       }]
     }
   });
-
   // Bar chart
   const monthlyData = {};
   transactions.forEach(t => {
