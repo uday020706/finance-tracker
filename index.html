@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Personal Finance Tracker</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+</head>
+
+<body>
+  <div class="container">
+    <h1>Personal Finance Tracker</h1>
+    <form id="form">
+      <input type="number" id="amount" placeholder="Enter amount" required>
+      <select id="option">
+        <option value="income">Income</option>
+        <option value="expense">Expense</option>
+      </select>
+      <input type="text" id="category" placeholder="Category (e.g., Food, Salary)" required>
+      <input type="text" id="description" placeholder="Description (optional)">
+      <button id="add-btn" type="submit">Add Transaction</button>
+    </form>
+
+
+    <div class="totals">
+      <p>Total Income: ₹ <span id="total-income">0</span></p>
+      <p>Total Expenses: ₹ <span id="total-expenses">0</span></p>
+      <p>Balance: ₹ <span id="balance">0</span></p>
+    </div>
+
+ <div class="charts">
+      <div class="pieChart"><canvas id="pieChart"></canvas></div>
+      <div class="barChart"><canvas id="barChart"><canvas id="barChart"></canvas></canvas></div>
+    </div>
+
+
+    <h2>Transactions</h2>
+    <table id="transaction-table">
+      <thead class="tableRow">
+        <tr>
+          <th>Date</th>
+          <th>Type</th>
+          <th>Category</th>
+          <th>Description</th>
+          <th>Amount (₹)</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Transactions will be added here dynamically -->
+      </tbody>
+    </table>
+
+
+
+   
+
+  </div>
+
+  <script src="script.js">
+  </script>
+</body>
+
+</html>

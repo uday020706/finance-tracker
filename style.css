@@ -1,0 +1,302 @@
+:root {
+  --bg-color: #f9f9f9;
+  --text-color: black;
+  --card-bg: #ffffff;
+  --primary-color: #4caf50;
+  --secondary-color: #f44336;
+  --table-header: #e0e0e0;
+  --border-color: #ddd;
+  --button-bg: #4caf50;
+  --button-hover: #45a049;
+  --button-text: #fff;
+  --delete-bg: #060606;
+  --delete-hover: #d32f2f;
+  --delete-text: #fff;
+  --highlight-color: #2f01fb;
+}
+
+/* 🌙 Dark Mode */
+.dark-mode {
+  --bg-color: black;
+  --text-color: #f5f5f5;
+  --card-bg: #2a2a2a;
+  --primary-color: #81c784;
+  --secondary-color: #ef9a9a;
+  --table-header: #333;
+  --border-color: #555;
+  --button-bg: #388e3c;
+  --button-hover: #2e7d32;
+  --button-text: #fff;
+  --delete-bg: #d32f2f;
+  --delete-hover: #b71c1c;
+  --delete-text: #fff;
+  --highlight-color: #4a90e2;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background: var(--bg-color);
+  margin: 0;
+  padding: 20px;
+  color: var(--text-color);
+}
+
+.container {
+  width: 80vw;
+  margin: auto;
+  background: var(--card-bg);
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+h1, h2 {
+  text-align: center;
+  color: var(--text-color);
+}
+
+form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+form input, form select, form button {
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid var(--border-color);
+  flex: 1;
+}
+
+form button {
+  background: rgb(50, 50, 194);
+  color: var(--button-text);
+  border: none;
+  cursor: pointer;
+  font-weight: bolder;
+  font-size: large;
+}
+
+
+form button:hover {
+  background: var(--button-hover);
+}
+
+.totals {
+  display: flex;
+  justify-content: space-around;
+  margin: 15px auto;
+  background: var(--table-header);
+  padding: 10px;
+  border-radius: 8px;
+  font-weight: bolder;
+}
+
+#transaction-list {
+  list-style: none;
+  padding: 0;
+}
+
+#transaction-list li {
+  background: var(--table-header);
+  margin: 8px 0;
+  padding: 8px;
+  border-left: 6px solid;
+  border-radius: 6px;
+}
+
+#transaction-list li.income {
+  border-color: var(--primary-color);
+}
+
+#transaction-list li.expense {
+  border-color: var(--secondary-color);
+}
+
+.charts {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+.pieChart {
+  width: 25vw;
+  height: 25vh;
+}
+
+.barChart {
+  width: 20vw;
+  height: 25vh;
+}
+
+#transaction-list {
+  list-style: auto;
+}
+
+#transaction-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 15px;
+  font-size: 14px;
+}
+
+#transaction-table th, #transaction-table td {
+  padding: 10px;
+  border: 1px solid var(--border-color);
+  text-align: center;
+}
+
+#transaction-table th {
+  background-color: var(--table-header);
+}
+
+#transaction-table tr:nth-child(even) {
+  background-color: var(--bg-color);
+}
+
+#transaction-table tr td strong.income {
+  color: var(--primary-color);
+}
+
+#transaction-table tr td strong.expense {
+  color: var(--secondary-color);
+}
+
+.delete-btn {
+  padding: 5px 5px;
+  background-color: var(--delete-bg);
+  color: var(--delete-text);
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.delete-btn:hover {
+  background-color: var(--delete-hover);
+}
+
+#total-income {
+  font-size: medium;
+  color: var(--primary-color);
+}
+
+#total-expenses {
+  font-size: medium;
+  color: var(--secondary-color);
+}
+
+#balance {
+  font-size: medium;
+  color: var(--highlight-color);
+}
+
+/* 📱 Mobile First (Default) */
+
+/* For tablets (up to 1024px) */
+@media screen and (max-width: 1024px) {
+  .container {
+    width: 90%;
+    padding: 15px;
+  }
+
+  form {
+    gap: 8px;
+  }
+
+  .charts {
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .pieChart,
+  .barChart {
+    width: 80% !important;
+    height: auto;
+  }
+}
+
+/* For large phones (up to 768px) */
+@media screen and (max-width: 768px) {
+  body {
+    font-size: 14px;
+    padding: 10px;
+  }
+
+  .container {
+    width: 95%;
+    padding: 12px;
+  }
+
+  form {
+    flex-direction: column;
+  }
+
+  form input,
+  form select,
+  form button {
+    width: 100%;
+    font-size: 14px;
+  }
+
+  .totals {
+    flex-direction: column;
+    gap: 10px;
+    text-align: center;
+    font-size: 14px;
+  }
+
+  #transaction-table {
+    font-size: 12px;
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+
+  #transaction-table th,
+  #transaction-table td {
+    padding: 6px;
+  }
+
+  .pieChart,
+  .barChart {
+    width: 95% !important;
+    height: auto;
+  }
+}
+
+/* For small phones (up to 480px) */
+@media screen and (max-width: 480px) {
+  body {
+    font-size: 12px;
+    padding: 5px;
+  }
+
+  .container {
+    width: 100%;
+    padding: 10px;
+  }
+
+  form input,
+  form select,
+  form button {
+    font-size: 12px;
+    padding: 8px;
+  }
+
+  h1, h2 {
+    font-size: 18px;
+  }
+
+  .totals {
+    font-size: 12px;
+    gap: 8px;
+  }
+
+  .delete-btn {
+    font-size: 12px;
+    padding: 4px 6px;
+  }
+}
