@@ -44,8 +44,8 @@ function setTransactions() {
     tr.innerHTML = `
       <td>${formattedDate}</td>
       <td><strong class="${t.type}">${t.type.toUpperCase()}</strong></td>
-      <td>${t.category}</td>
-      <td>${t.description || '-'}</td>
+      <td>${t.category.charAt(0).toUpperCase() + t.category.slice(1)}</td>
+      <td>${t.description.charAt(0).toUpperCase() + t.description.slice(1) || '-'}</td>
       <td>₹${t.amount}</td>
       <td><button class="delete-btn" data-index="${i}"><img src="delete.svg" alt="delete"></button></td>
     `;

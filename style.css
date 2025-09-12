@@ -55,6 +55,12 @@ h1, h2 {
   color: var(--text-color);
 }
 
+.separate {
+  background-color: rgb(195, 184, 184);
+  height: 2px;
+  margin-bottom: 15px;
+}
+
 form {
   display: flex;
   flex-wrap: wrap;
