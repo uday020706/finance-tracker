@@ -120,7 +120,7 @@ form button:hover {
   justify-content: space-evenly;
 }
 
-.pieChart {
+#pieChart {
   width: 30vw;
   height: 30vh;
 }
@@ -212,9 +212,9 @@ form button:hover {
     gap: 20px;
   }
 
-  .pieChart {
-  width: 30vw;
-  height: 30vh;
+  #pieChart {
+  width: 40vw;
+  height: 40vh;
 }
   .barChart {
     width: auto ;
@@ -277,9 +277,9 @@ form button:hover {
     padding: 6px;
   }
 
-  .pieChart {
-  width: 30vw;
-  height: 30vh;
+  #pieChart {
+  width: 40vw;
+  height: 40vh;
 }
   .barChart {
     width: auto ;
@@ -305,9 +305,9 @@ form button:hover {
     padding: 8px;
     width: 90vw;
   }
-  .pieChart {
-  width: 30vw;
-  height: 30vh;
+  #pieChart {
+  width: 40vw;
+  height: 40vh;
 }
 .barChart {
   width: auto;
