@@ -36,10 +36,8 @@ Project Structure
 ├── index.html          # Main HTML file
 ├── style.css           # Styles (with CSS variables for colors)
 ├── script.js           # Core logic (transactions, charts, PDF export)
-├── images/             # Icons, favicon, and assets
-│   ├── favicon.ico
-│   ├── logo.png
-│   └── ... (other assets)
+├── favicon.ico         
+├── delete.svg  
 └── README.md           # Project documentation
 ```
 
