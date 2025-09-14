@@ -195,18 +195,25 @@ async function exportFile(transactions) {
         const formattedDate = d.getDate() + "/" + (d.getMonth() + 1) + "/" + d.getFullYear();
         return [
             formattedDate,
-            t.type.toUpperCase(),
-            t.category.charAt(0).toUpperCase() + t.category.slice(1),
-            + t.amount
+            t.type === 'income' ?  t.amount : '',
+            t.type === 'expense' ?  t.amount : '',
+            t.category.charAt(0).toUpperCase() + t.category.slice(1)
         ];
     });
     doc.autoTable({
-        head: [["Date", "Type", "Category", "Amount"]],
+        head: [["Date", "Credit", "Debit",  "Category"]],
         body: rows,
         startY: 25,
-        styles: { fontSize: 10, halign: "center" },
+        styles: { fontSize: 10, halign: "center",lineColor: [200, 200, 200], 
+        lineWidth: 0.2 },
+
         headStyles: { fillColor: [22, 160, 133] },
-        alternateRowStyles: { fillColor: [240, 240, 240] }
+        alternateRowStyles: { fillColor: [240, 240, 240] },
+
+        columnStyles: {
+        1: { textColor: [0, 200, 0], fontStyle: 'bold' },
+        2: { textColor: [220, 20, 60], fontStyle: 'bold' }
+    }
     });
 
     doc.save("transactions.pdf");
