@@ -55,4 +55,4 @@ Project Structure
 ## Author
 **Uday Chandra**
 - 💼 Web Development Intern at Global Secure Layer X Pvt. Ltd.
-- 📧 Email: [udaychandra266@gmail.com]
+- 📧 Email: udaychandra266@gmail.com
