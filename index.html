@@ -15,17 +15,17 @@
     <h1>Personal Finance Tracker</h1>
     <div class="separate"></div>
     <div class="inputForm">
-    <form id="form">
-      <input type="number" id="amount" placeholder="Enter amount" required>
-      <select id="option">
-        <option value="income">Income</option>
-        <option value="expense">Expense</option>
-      </select>
-      <input type="text" id="category" placeholder="Category (e.g., Food, Salary)" required>
-      <input type="text" id="description" placeholder="Description (optional)">
-      <button id="add-btn" type="submit">Add Transaction</button>
-    </form>
-</div>
+      <form id="form">
+        <input type="number" id="amount" placeholder="Enter amount" required>
+        <select id="option">
+          <option value="income">Income</option>
+          <option value="expense">Expense</option>
+        </select>
+        <input type="text" id="category" placeholder="Category (e.g., Food, Salary)" required>
+        <input type="text" id="description" placeholder="Description (optional)">
+        <button id="add-btn" type="submit">Add Transaction</button>
+      </form>
+    </div>
 
     <div class="totals">
       <p>Total Income: ₹ <span id="total-income">0</span></p>
@@ -33,7 +33,7 @@
       <p>Balance: ₹ <span id="balance">0</span></p>
     </div>
 
- <div class="charts">
+    <div class="charts">
       <div class="pieChart"><canvas id="pieChart"></canvas></div>
       <div class="barChart"><canvas id="barChart"></canvas></div>
     </div>
@@ -57,8 +57,7 @@
     </table>
   </div>
 
-  <script src="script.js">
-  </script>
+  <script src="script.js"></script>
 </body>
 
 </html>
