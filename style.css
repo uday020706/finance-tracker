@@ -191,7 +191,7 @@
           margin: 15px auto;
           background: rgb(47, 46, 49);
           color: rgb(255, 255, 255);
-          border-radius:100px;
+          border-radius: 100px;
           font-weight: bolder;
           font-size: larger;
           letter-spacing: 1px;
@@ -208,13 +208,14 @@
         #balance {
           color: rgb(0, 217, 255);
         }
+
         .barBox {
           height: 55vh;
           width: 30vw;
           border: 2px solid rgb(106, 104, 104);
           border-radius: 15px;
           margin: 15px;
-          margin-top: 80px;
+          margin-top: 55px;
           padding: 10px;
           display: flex;
           justify-content: center;
@@ -343,6 +344,7 @@
             width: 100% !important;
             height: auto !important;
           }
+
           .barBox {
             margin-top: 10px;
             margin-bottom: 30px;
@@ -361,4 +363,96 @@
           }
         }
 
-        
+
+        @media (min-width: 601px) and (max-width: 1200px) {
+          .bodyContainer {
+            align-items: stretch;
+          }
+
+          .left,
+          .right {
+            height: auto;
+          }
+
+          .leftContainer,
+          .rightContainer {
+            width: 100%;
+            height: 95vh;
+            margin: 10px;
+            padding: 10px;
+            box-sizing: border-box;
+          }
+
+
+          .left {
+            width: 40vw;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+          }
+
+          .right {
+            width: 60vw;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+          }
+
+          #formSection {
+            margin-bottom: 20px;
+          }
+
+          .boxes {
+            flex-direction: column;
+          }
+
+          form input,
+          form select,
+          form button {
+            width: 30vw;
+          }
+
+          .barBox {
+            width: 50vw;
+            height: auto;
+          }
+
+          .pieBox {
+            width: 30vw;
+            height: auto;
+          }
+
+          .pieChart,
+          .barChart {
+            width: 100% !important;
+            height: auto !important;
+          }
+
+          .pieBox canvas,
+          .barBox canvas {
+            width: 100% !important;
+            height: auto !important;
+          }
+
+          .barBox {
+            margin-top: 10px;
+            margin-bottom: 30px;
+          }
+
+          .totals {
+            width: 50vw;
+            flex-direction: column;
+            font-size: medium;
+          }
+
+          #transaction-table {
+            width: 100%;
+            max-width: none;
+            max-height: 55vh;
+            display: block;
+            overflow-x: auto;
+            overflow-y: auto;
+            margin: 15px;
+          }
+        }
