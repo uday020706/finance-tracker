@@ -39,13 +39,13 @@ function setTransactions() {
         const today = new Date(t.date);
         const formattedDate = today.getDate() + "/" + (today.getMonth() + 1) + "/" + today.getFullYear();
 
-        tr.innerHTML = `
-      <td>${formattedDate}</td>
-      <td><strong class="${t.type}">${t.type.toUpperCase()}</strong></td>
-      <td>${t.category.charAt(0).toUpperCase() + t.category.slice(1)}</td>
-      <td>₹${t.amount}</td>
-      <td><button class="delete-btn" data-index="${i}"><img src="delete.svg" alt="delete"></button></td>
-    `;
+      tr.innerHTML = `
+  <td>${formattedDate}</td>
+  <td style="color: greenyellow; font-weight: bold; letter-spacing: 1px;"">${t.type === 'income' ? `${t.amount}` : ''}</td>
+  <td style="color: red; font-weight: bold; letter-spacing: 1px;">${t.type === 'expense' ? `${t.amount}` : ''}</td>
+  <td>${t.category.charAt(0).toUpperCase() + t.category.slice(1)}</td>
+  <td><button class="delete-btn" data-index="${i}"><img src="delete.svg" alt="delete"></button></td>
+`;
 
         tableBody.appendChild(tr);
     });
@@ -56,7 +56,7 @@ const categoryColors = JSON.parse(localStorage.getItem("categoryColors")) || {};
 function getCategoryColor(category) {
     if (!categoryColors[category]) {
         categoryColors[category] = `hsl(${Math.random() * 360},70%,60%)`;
-        localStorage.setItem("categoryColors", JSON.stringify(categoryColors)); 
+        localStorage.setItem("categoryColors", JSON.stringify(categoryColors));
     }
     return categoryColors[category];
 }
@@ -65,20 +65,20 @@ function getCategoryColor(category) {
 function updateCharts() {
     const expenseTotals = {};
     transactions
-    .filter(t => t.type === 'expense')
-    .forEach(t => {
-        expenseTotals[t.category] = (expenseTotals[t.category] || 0) + t.amount;
-    });
-    
+        .filter(t => t.type === 'expense')
+        .forEach(t => {
+            expenseTotals[t.category] = (expenseTotals[t.category] || 0) + t.amount;
+        });
+
     // Pie chart
     const pieLabels = Object.keys(expenseTotals);
     const pieData = Object.values(expenseTotals);
     const pieColors = pieLabels.map(c => getCategoryColor(c));
-    
+
     if (window.pieChart instanceof Chart) {
         window.pieChart.destroy();
     }
-    
+
     const pieCtx = document.getElementById("pieChart").getContext("2d");
     window.pieChart = new Chart(pieCtx, {
         type: "doughnut",
@@ -155,7 +155,6 @@ function updateCharts() {
 }
 
 
-
 //  updating local storage 
 function updateLS() {
     const income = transactions
@@ -198,7 +197,7 @@ async function exportFile(transactions) {
             formattedDate,
             t.type.toUpperCase(),
             t.category.charAt(0).toUpperCase() + t.category.slice(1),
-             + t.amount
+            + t.amount
         ];
     });
     doc.autoTable({
@@ -206,7 +205,7 @@ async function exportFile(transactions) {
         body: rows,
         startY: 25,
         styles: { fontSize: 10, halign: "center" },
-        headStyles: { fillColor: [22, 160, 133] }, 
+        headStyles: { fillColor: [22, 160, 133] },
         alternateRowStyles: { fillColor: [240, 240, 240] }
     });
 
